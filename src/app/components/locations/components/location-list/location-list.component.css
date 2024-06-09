@@ -1,0 +1,13 @@
+.card {
+    margin-bottom: 1rem;
+    &:hover {
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        cursor: pointer;
+        .delete-icon {
+            display: block;
+        }
+    }
+}
+.delete-icon {
+    display: none;
+}

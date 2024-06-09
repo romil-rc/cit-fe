@@ -1,0 +1,10 @@
+<div class="card" style="width: 18rem;" (click)="navigateToLocation(data._id)">
+  <div class="card-body">
+    <div class="d-flex justify-content-between">
+      <h6 class="card-subtitle mb-2 text-body-secondary">{{data.locationName}}</h6>
+      <img class="delete-icon" [src]="'assets/icons/trash-outline.svg'"
+       height="24" width="24" alt="delete" (click)="deleteLocation(data._id); $event.stopImmediatePropagation()">
+    </div>
+    <img [src]="'assets/icons/location-outline.svg'" height="24" width="24" alt="location">
+  </div>
+</div>

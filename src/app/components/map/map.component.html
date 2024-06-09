@@ -1,0 +1,113 @@
+<div class="m-3">
+    <div class="d-flex justify-content-between">
+        <h3>{{router.url.includes('add-class') ? 'Add' : 'Your'}} Location for Class</h3>
+        <button type="button" class="btn btn-success" (click)="saveLocation(router.url.includes('add-class'))">
+            {{ router.url.includes('add-class') ? 'Add Class' : 'Save Class'}}
+        </button>
+    </div>
+    <label for="typeahead-basic">Search:</label>
+    <input id="typeahead-basic" type="text" class="form-control" [ngbTypeahead]="search"
+    [(ngModel)]="selectedLocation"  (ngModelChange)="isSearched && onSelectLocation()" placeholder="Type address"/>
+</div>
+
+<div class="map-wrap">
+    <a href="https://www.maptiler.com" class="watermark"><img
+        src="https://api.maptiler.com/resources/logo.svg" alt="MapTiler logo"/></a>
+    <div class="map" #map></div>
+</div>
+
+<ng-container *ngIf="currentLocation">
+    <form [formGroup]="locationForm" class="m-3">
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default" for="locationName">Location Name</span>
+            <input type="text" class="form-control" formControlName="locationName" placeholder="Enter Location Name">
+        </div>
+        <div formGroupName="address">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default" for="addressLine1">Address Line 1</span>
+                <input type="text" class="form-control" formControlName="addressLine1" placeholder="Enter Address Line 1">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default" for="addressLine2">Address Line 2</span>
+                <input type="text" class="form-control" formControlName="addressLine2" placeholder="Enter Address Line 2">
+            </div>
+            <div class="d-flex">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default" for="suburb">Suburb</span>
+                    <input type="text" class="form-control" formControlName="suburb" placeholder="Enter Suburb">
+                </div>
+                <div class="input-group mb-3 mx-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default" for="city">City</span>
+                    <input type="text" class="form-control" formControlName="city" placeholder="Enter City">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default" for="pincode">Pincode</span>
+                    <input type="number" class="form-control" formControlName="pincode" placeholder="Enter Pincode">
+                </div>
+            </div>
+            <div class="d-flex">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default" for="county">County</span>
+                    <input type="text" class="form-control" formControlName="county" placeholder="Enter County">
+                </div>
+                <div class="input-group mb-3 mx-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default" for="state">State</span>
+                    <input type="text" class="form-control" formControlName="state" placeholder="Enter State">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default" for="country">Country</span>
+                    <input type="text" class="form-control" formControlName="country" placeholder="Enter Country">
+                </div>
+            </div>
+        </div>
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  More Details
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="d-flex">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="inputGroup-sizing-default" for="capacity">Capacity</span>
+                            <input type="number" class="form-control" formControlName="capacity" placeholder="Enter Capacity">
+                        </div>
+                        <div class="input-group mb-3 mx-3">
+                            <span class="input-group-text" id="inputGroup-sizing-default" for="openingHours">Opening Hours</span>
+                            <input type="number" class="form-control" formControlName="openingHours" placeholder="Enter Opening Hours">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="inputGroup-sizing-default" for="rating">Rating</span>
+                            <input type="number" class="form-control" formControlName="rating" placeholder="Enter Rating">
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <div class="input-group mb-3 me-3">
+                            <span class="input-group-text" id="inputGroup-sizing-default" for="events">Events</span>
+                            <input type="text" class="form-control" formControlName="events" placeholder="Enter Events">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="inputGroup-sizing-default" for="facilities">Facilities</span>
+                            <input type="text" class="form-control" formControlName="facilities" placeholder="Enter Facilities">
+                        </div>
+                    </div>
+                    <div formGroupName="contactInfo">
+                        <div class="d-flex">
+                            <div class="input-group mb-3 me-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default" for="email">Email Address</span>
+                                <input type="email" class="form-control" formControlName="email" placeholder="Enter Email">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default" for="phoneNumber">Phone Number</span>
+                                <input type="number" class="form-control" formControlName="phoneNumber" placeholder="Enter Phone Number">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </form>
+</ng-container>

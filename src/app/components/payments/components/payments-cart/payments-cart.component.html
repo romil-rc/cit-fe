@@ -1,0 +1,22 @@
+<div class="container mt-4">
+    <div class="d-flex justify-content-between">
+        <h3>Classes</h3>
+        <button type="button" class="btn btn-outline-success" 
+        (click)="navigateTo('payments-list')">Check Payments</button>
+    </div>
+    <ng-container *ngFor="let class of data; let i = index">
+        <div class="d-flex p-3 border-bottom justify-content-between">
+            <div class="d-flex">
+                <img [src]="class.classImage" height="60" width="100" alt="img-{{i}}">
+                <div class="ms-3">
+                    <h4>{{class.className}}</h4>
+                    <p class="mb-0">{{class.tutorName}}</p>
+                </div>
+            </div>
+            <div>
+                <span class="text-danger fw-semibold me-3">${{class.classFee}}</span>
+                <span class="badge rounded-pill text-bg-danger pointer" (click)="bookClass(class._id)">BUY</span>
+            </div>
+        </div>
+    </ng-container>
+</div>
