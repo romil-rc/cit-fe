@@ -26,6 +26,7 @@
             "outputPath": "dist/client",
             "index": "src/index.html",
             "browser": "src/main.ts",
+            "baseHref": "cit-fe",
             "polyfills": [
               "zone.js"
             ],
