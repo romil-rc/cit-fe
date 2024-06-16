@@ -8,6 +8,8 @@ import { PaymentService } from '../../../../services/payment.service';
 })
 export class PaymentsListComponent implements OnInit {
 
+  public paymentDetails: any[] = [];
+
   constructor(private paymentService: PaymentService) {}
 
   ngOnInit(): void {
@@ -17,7 +19,7 @@ export class PaymentsListComponent implements OnInit {
   private fetchPaymentsList(): void {
     this.paymentService.getAllPayments().subscribe({
       next: (res) => {
-        console.log(res);
+        this.paymentDetails = res;
       },
       error: (err) => {
         throw err;

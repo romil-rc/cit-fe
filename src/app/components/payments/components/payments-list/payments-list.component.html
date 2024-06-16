@@ -1,1 +1,29 @@
-<p>payments-list works!</p>
+<div class="container mt-3">
+  <h3>All payments</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Class</th>
+        <th scope="col">Date</th>
+        <th scope="col">Total Price</th>
+        <th scope="col">Payment Type</th>
+        <th scope="col">Payment Method</th>
+        <th scope="col">Student Name</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let payment of paymentDetails; let i=index">
+      <tr *ngIf="payment">
+        <th scope="row">{{i+1}}</th>
+        <td>{{payment.lineItems[0].description}}</td>
+        <td>{{payment.paymentDate | date}}</td>
+        <td>{{(payment.lineItems[0].amount_total/100) | currency}}</td>
+        <td>{{payment.charges.payment_method_details.type | titlecase}}</td>
+        <td>{{payment.charges.payment_method_details.card.brand}}....{{payment.charges.payment_method_details.card.last4}}</td>
+        <td>{{payment.charges.billing_details.name}}</td>
+        <td><a [href]="payment.charges.receipt_url" target="_blank">Receipt</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
