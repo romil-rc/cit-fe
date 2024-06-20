@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class PaymentsCartComponent implements OnInit {
 
   public data: any;
+  public classId!: string;
 
   constructor(private paymentService: PaymentService, private classService: ClassService,
     private router: Router) {
@@ -31,21 +32,26 @@ export class PaymentsCartComponent implements OnInit {
     })
   }
 
-  public bookClass(classId: string) {
-    this.addPayment(classId);
+  public bookClass(classId: string, paymentGateway: string) {
+    this.addPayment(classId, paymentGateway);
   }
 
-  public addPayment(classId: string) {
+  public addPayment(classId: string, paymentGateway: string) {
     // const payment = {
     //   items: [
     //     {id: 1, quantity: 8},
     //     {id: 2, quantity: 7}
     //   ]
     // };
-    console.log(classId);
-    this.paymentService.addPayment({classId}).subscribe({
+    // console.log(classId);
+    this.paymentService.addPayment({classId, paymentGateway}).subscribe({
       next: (res) => {
-        window.location = res.url;
+        if(paymentGateway === 'stripe') {
+          window.location = res.url;
+        } else if (paymentGateway === 'razorpay') {
+          // console.log(res);
+          this.paymentService.initiateRazorpayPayment(res.orderId, res.amount);
+        }
       },
       error: (err) => {
         console.log(err);
