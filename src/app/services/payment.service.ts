@@ -21,6 +21,11 @@ export class PaymentService {
     return this.http.get<any>(url);
   }
 
+  public processGooglePayments(token: any): Observable<any> {
+    const url = 'http://localhost:3000/api/payment/gpay-process-payment';
+    return this.http.post<any>(url, token);
+  }
+
   public initiateRazorpayPayment(orderId: string, amount: number) {
     const options: any = {
       key: 'rzp_live_AmpQY2tGNDYHJJ', // Enter the Key ID generated from the Dashboard
