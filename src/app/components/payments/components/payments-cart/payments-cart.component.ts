@@ -12,6 +12,7 @@ export class PaymentsCartComponent implements OnInit {
 
   public data: any;
   public classId!: string;
+  public paymentRequest!: google.payments.api.PaymentDataRequest;
 
   constructor(private paymentService: PaymentService, private classService: ClassService,
     private router: Router) {
@@ -19,6 +20,38 @@ export class PaymentsCartComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchClasses();
+    this.paymentRequest = {
+      apiVersion: 2,
+      apiVersionMinor: 0,
+      allowedPaymentMethods: [
+        {
+          type: 'CARD',
+          parameters: {
+            allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
+            allowedCardNetworks: ['AMEX', 'VISA', 'MASTERCARD']
+          },
+          tokenizationSpecification: {
+            type: 'PAYMENT_GATEWAY',
+            parameters: {
+              gateway: 'stripe',
+              gatewayMerchantId: 'pk_test_51PSIEfGtzv6pH5HJTDJMVp60hXZvkaScxZtC2s5WoldwrKNYiEF2fWiqypAQU3wbsNKVtcXxhIEP6jpwBUzT3mOy00VVDqVYhA'
+            }
+          }
+        }
+      ],
+      merchantInfo: {
+        merchantId: '12345678901234567890',
+        merchantName: 'Demo Merchant'
+      },
+      transactionInfo: {
+        totalPriceStatus: 'FINAL',
+        totalPriceLabel: 'Total',
+        totalPrice: '100.00',
+        currencyCode: 'USD',
+        countryCode: 'US'
+      },
+      callbackIntents: ['PAYMENT_AUTHORIZATION']
+    };
   }
 
   public fetchClasses(): void {
@@ -61,5 +94,29 @@ export class PaymentsCartComponent implements OnInit {
 
   public navigateTo(location: string) {
     this.router.navigate(['payments', location]);
+  }
+
+  onLoadPaymentData = (event: Event): void => {
+    const eventDetail = event as CustomEvent<google.payments.api.PaymentData>
+    const paymentData = eventDetail.detail;
+    const token = paymentData.paymentMethodData.tokenizationData.token;
+    this.paymentService.processGooglePayments(token).subscribe({
+      next: (response: any) => {
+        console.log('Payment successful', response);
+      },
+      error: (error: any) => {
+        console.log(error);
+        throw error;
+      }
+    });
+  }
+
+  onPaymentDataAuthorized: google.payments.api.PaymentAuthorizedHandler = (paymentData) => {
+    console.log(paymentData);
+    return { transactionState: 'SUCCESS'};
+  }
+
+  onError = (event: ErrorEvent) => {
+    console.log(event);
   }
 }

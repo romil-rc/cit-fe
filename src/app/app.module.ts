@@ -20,6 +20,7 @@ import { ChannelPreviewComponent } from './components/chats/components/channel-p
 import { PaymentsComponent } from './components/payments/payments.component';
 import { PaymentsListComponent } from './components/payments/components/payments-list/payments-list.component';
 import { PaymentsCartComponent } from './components/payments/components/payments-cart/payments-cart.component';
+import { GooglePayButtonModule } from '@google-pay/button-angular';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { PaymentsCartComponent } from './components/payments/components/payments
     FormsModule,
     NgbModule,
     ReactiveFormsModule,
+    GooglePayButtonModule,
     TranslateModule.forRoot(),
     StreamAutocompleteTextareaModule,
     StreamChatModule

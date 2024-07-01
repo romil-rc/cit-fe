@@ -23,7 +23,7 @@ export class PaymentService {
 
   public initiateRazorpayPayment(orderId: string, amount: number) {
     const options: any = {
-      key: 'rzp_test_kdXlkz2Tyzmf81', // Enter the Key ID generated from the Dashboard
+      key: 'rzp_live_AmpQY2tGNDYHJJ', // Enter the Key ID generated from the Dashboard
       amount: amount * 100, // amount in the smallest currency unit
       currency: 'INR',
       name: 'Class In Town',

@@ -29,6 +29,17 @@
           <h1 class="modal-title fs-5" id="exampleModalLabel">Payment Gateway</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <google-pay-button
+            environment="TEST"
+            buttonType="buy"
+            buttonColor="black"
+            buttonSizeMode="fill"
+            [paymentRequest]="paymentRequest"
+            (loadpaymentdata)="onLoadPaymentData($event)"
+            (error)="onError($event)"
+            [paymentAuthorizedCallback]="onPaymentDataAuthorized"
+
+        ></google-pay-button>
         <div class="modal-body d-flex">
             <div>
                 <img [src]="'assets/logos/stripe.jpg'" alt="stripe" (click)="bookClass(classId, 'stripe')" [height]="75" [width]="120" class="pointer">
