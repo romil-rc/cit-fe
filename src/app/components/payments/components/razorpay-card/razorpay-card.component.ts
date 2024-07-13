@@ -159,7 +159,7 @@ export class RazorpayCardComponent implements OnInit {
         paymentGateway: 'razorpay-card', 
         data: this.cardForm.value}).subscribe({
         next: (res) => {
-          console.log(res);
+          window.location = res.url;
         },
         error: (err) => {
           console.log(err);
