@@ -26,7 +26,6 @@
             "outputPath": "dist/client",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "baseHref": "cit-fe",
             "polyfills": [
               "zone.js"
             ],
@@ -46,13 +45,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2mb",
-                  "maximumError": "4mb"
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
                 }
               ],
               "outputHashing": "all"

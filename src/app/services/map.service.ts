@@ -26,27 +26,27 @@ export class MapService {
   }
 
   public getLocations(): Observable<any> {
-    const url = 'https://cit-be.onrender.com/api/location/';
+    const url = 'http://localhost:3000/api/location/';
     return this.http.get<any>(url);
   }
 
   public saveLocation(body: any): Observable<any> {
-    const url = 'https://cit-be.onrender.com/api/location/';
+    const url = 'http://localhost:3000/api/location/';
     return this.http.post<any>(url, body);
   }
 
   public updateLocation(id: string | null, body: any): Observable<any> {
-    const url = 'https://cit-be.onrender.com/api/location/' + id;
+    const url = 'http://localhost:3000/api/location/' + id;
     return this.http.patch<any>(url, body);
   }
 
   public getALocation(id: string): Observable<any> {
-    const url = 'https://cit-be.onrender.com/api/location/' + id;
+    const url = 'http://localhost:3000/api/location/' + id;
     return this.http.get<any>(url);
   }
 
   public deleteLocation(id: string): Observable<any> {
-    const url = 'https://cit-be.onrender.com/api/location/' + id;
+    const url = 'http://localhost:3000/api/location/' + id;
     return this.http.delete<any>(url);
   }
 

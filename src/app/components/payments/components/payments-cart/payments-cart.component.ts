@@ -82,7 +82,7 @@ export class PaymentsCartComponent implements OnInit {
         if(paymentGateway === 'stripe') {
           window.location = res.url;
         } else if (paymentGateway === 'razorpay') {
-          // console.log(res);
+          console.log(res);
           this.paymentService.initiateRazorpayPayment(res.orderId, res.amount);
         }
       },
@@ -94,6 +94,10 @@ export class PaymentsCartComponent implements OnInit {
 
   public navigateTo(location: string) {
     this.router.navigate(['payments', location]);
+  }
+
+  public checkOut(classId: string): void {
+    this.router.navigate(['payments', classId, 'checkout']);
   }
 
   onLoadPaymentData = (event: Event): void => {

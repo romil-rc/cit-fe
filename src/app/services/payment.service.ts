@@ -12,12 +12,12 @@ export class PaymentService {
   constructor(private http: HttpClient) { }
 
   public addPayment(body: any): Observable<any> {
-    const url = 'https://cit-be.onrender.com/api/payment/';
+    const url = 'http://localhost:3000/api/payment/';
     return this.http.post<any>(url, body);
   }
 
   public getAllPayments(): Observable<any> {
-    const url = 'https://cit-be.onrender.com/api/payment/';
+    const url = 'http://localhost:3000/api/payment/';
     return this.http.get<any>(url);
   }
 
@@ -27,8 +27,9 @@ export class PaymentService {
   }
 
   public initiateRazorpayPayment(orderId: string, amount: number) {
+    console.log(orderId);
     const options: any = {
-      key: 'rzp_live_AmpQY2tGNDYHJJ', // Enter the Key ID generated from the Dashboard
+      key: 'rzp_test_7PHVvtMC8ZgAdU', // Enter the Key ID generated from the Dashboard
       amount: amount * 100, // amount in the smallest currency unit
       currency: 'INR',
       name: 'Class In Town',

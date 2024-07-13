@@ -16,8 +16,7 @@
             <div>
                 <span class="text-danger fw-semibold me-3">${{class.classFee}}</span>
                 <span class="badge rounded-pill text-bg-danger pointer" 
-                data-bs-toggle="modal" data-bs-target="#exampleModal"
-                 (click)="classId = class._id">BUY</span>
+                 (click)="checkOut(class._id)">BUY</span>
             </div>
         </div>
     </ng-container>

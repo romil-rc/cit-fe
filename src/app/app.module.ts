@@ -21,6 +21,10 @@ import { PaymentsComponent } from './components/payments/payments.component';
 import { PaymentsListComponent } from './components/payments/components/payments-list/payments-list.component';
 import { PaymentsCartComponent } from './components/payments/components/payments-cart/payments-cart.component';
 import { GooglePayButtonModule } from '@google-pay/button-angular';
+import { PaymentCheckoutComponent } from './components/payments/components/payment-checkout/payment-checkout.component';
+import { RazorpayCardComponent } from './components/payments/components/razorpay-card/razorpay-card.component';
+import { CardValidatorDirective } from './directives/card-validator.directive';
+import { CreditCardDirectivesModule } from 'angular-cc-library';
 
 @NgModule({
   declarations: [
@@ -35,7 +39,10 @@ import { GooglePayButtonModule } from '@google-pay/button-angular';
     ChannelPreviewComponent,
     PaymentsComponent,
     PaymentsListComponent,
-    PaymentsCartComponent
+    PaymentsCartComponent,
+    PaymentCheckoutComponent,
+    RazorpayCardComponent,
+    CardValidatorDirective
   ],
   imports: [
     CommonModule,
@@ -48,7 +55,8 @@ import { GooglePayButtonModule } from '@google-pay/button-angular';
     GooglePayButtonModule,
     TranslateModule.forRoot(),
     StreamAutocompleteTextareaModule,
-    StreamChatModule
+    StreamChatModule,
+    CreditCardDirectivesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
