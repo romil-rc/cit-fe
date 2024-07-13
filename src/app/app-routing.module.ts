@@ -8,6 +8,8 @@ import { LocationComponent } from './components/locations/components/location/lo
 import { PaymentsComponent } from './components/payments/payments.component';
 import { PaymentsListComponent } from './components/payments/components/payments-list/payments-list.component';
 import { PaymentsCartComponent } from './components/payments/components/payments-cart/payments-cart.component';
+import { PaymentCheckoutComponent } from './components/payments/components/payment-checkout/payment-checkout.component';
+import { RazorpayCardComponent } from './components/payments/components/razorpay-card/razorpay-card.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -26,7 +28,9 @@ const routes: Routes = [
     component: PaymentsComponent,
     children: [
       { path: '', component: PaymentsCartComponent },
-      { path: 'payments-list', component: PaymentsListComponent }
+      { path: 'payments-list', component: PaymentsListComponent },
+      { path: ':id/checkout', component: PaymentCheckoutComponent },
+      { path: ':id/checkout/razorpay-card', component: RazorpayCardComponent }
     ]
   },
   { path: '**', redirectTo: '' }

@@ -96,6 +96,10 @@ export class PaymentsCartComponent implements OnInit {
     this.router.navigate(['payments', location]);
   }
 
+  public checkOut(classId: string): void {
+    this.router.navigate(['payments', classId, 'checkout']);
+  }
+
   onLoadPaymentData = (event: Event): void => {
     const eventDetail = event as CustomEvent<google.payments.api.PaymentData>
     const paymentData = eventDetail.detail;
