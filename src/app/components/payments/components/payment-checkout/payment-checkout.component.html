@@ -16,10 +16,17 @@
         </div>
       </div>
       <div class="accordion-item">
-        <input type="radio" name="razorpayUPI" value="razorpayUPI" id="razorpayUPI" class="accordion-radio" [(ngModel)]="selectedOption" [checked]="selectedOption === 'razorpay'">
+        <input type="radio" name="razorpayUPI" value="razorpayUPI" id="razorpayUPI" class="accordion-radio" [(ngModel)]="selectedOption" [checked]="selectedOption === 'razorpayUPI'">
         <label for="razorpayUPI" class="accordion-title">UPI / QR Code (Via Razorpay)</label>
         <div class="accordion-content">
-          <p>Show static QR</p>
+          <div class="d-flex flex-column">
+            <button *ngIf="!showQR" class="btn btn-outline-dark w-25" (click)="generateQR()" [disabled]="!userEmail || !userName">Generate QR Code</button>
+            <p class="mb-0 mt-2" *ngIf="!showQR">On clicking the above button, the QR Code will be availabe for payments for only 2.5 minutes.</p>
+            <img *ngIf="showQR" class="mt-2" [src]="'assets/images/qr-code.jpeg'" height="380" width="250" alt="qr-cpde">
+            <span *ngIf="showQR" class="mt-2">Time Remaining: <span class="text-danger fw-semibold">{{ timerDisplay }}</span></span>
+            <span *ngIf="showQR">Click on Done if payment is done.</span>
+            <button *ngIf="showQR" class="btn btn-outline-success w-25" (click)="onSubmit()">Done</button>
+          </div>
         </div>
       </div>
       <div class="accordion-item">

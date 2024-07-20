@@ -17,7 +17,7 @@ export class PaymentsListComponent implements OnInit {
   }
 
   private fetchPaymentsList(): void {
-    this.paymentService.getAllPayments().subscribe({
+    this.paymentService.getAllPayments('db').subscribe({
       next: (res) => {
         this.paymentDetails = res;
       },

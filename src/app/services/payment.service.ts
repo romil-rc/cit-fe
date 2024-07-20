@@ -16,8 +16,8 @@ export class PaymentService {
     return this.http.post<any>(url, body);
   }
 
-  public getAllPayments(): Observable<any> {
-    const url = 'https://cit-be.onrender.com/api/payment/';
+  public getAllPayments(gateway: string): Observable<any> {
+    const url = 'https://cit-be.onrender.com/api/payment/' + '?type='+gateway;
     return this.http.get<any>(url);
   }
 
