@@ -93,7 +93,7 @@ export class PaymentsCartComponent implements OnInit {
   }
 
   public navigateTo(location: string) {
-    this.router.navigate(['payments', location]);
+    this.router.navigate(['payments', location], { queryParams: {type: 'db'} });
   }
 
   public checkOut(classId: string): void {
