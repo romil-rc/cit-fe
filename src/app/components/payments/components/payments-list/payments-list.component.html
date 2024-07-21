@@ -19,7 +19,7 @@
         <td>{{ payment.lineItems ? payment.lineItems[0].description : '-'}}</td>
         <td>{{(payment.paymentDate ? payment.paymentDate : payment.createdAt) | date}}</td>
         <td>{{( payment.lineItems ? payment.lineItems[0].amount_total/100 : payment.amount) | currency}}</td>
-        <td>{{ (payment.charges ? payment.charges.payment_method_details.type : '-') | titlecase}}</td>
+        <td>{{ (payment.charges ? payment.charges.payment_method_details.type : payment.paymentGateway) | titlecase}}</td>
         <td>{{ payment.charges ? payment.charges.payment_method_details.card.brand : payment.paymentMethod}}<span *ngIf="type === 'stripe'">....{{payment.charges.payment_method_details.card.last4}}</span></td>
         <td>{{ payment.charges ? payment.charges.billing_details.name : payment.name }}</td>
         <td *ngIf="payment.charges"><a [href]="payment.charges.receipt_url" target="_blank">Receipt</a></td>
