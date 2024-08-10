@@ -21,6 +21,20 @@ export class PaymentsListComponent implements OnInit {
     }
   }
 
+  
+  public downloadReceipt(paymentId: string): void {
+    console.log(paymentId);
+    this.paymentService.downloadPaymentReceipt(paymentId).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.paymentService.downloadReport(res, 'pdf');
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
+
   private fetchPaymentsList(type: string): void {
     this.paymentService.getAllPayments(type).subscribe({
       next: (res) => {
@@ -29,6 +43,6 @@ export class PaymentsListComponent implements OnInit {
       error: (err) => {
         throw err;
       }
-    })
+    });
   }
 }

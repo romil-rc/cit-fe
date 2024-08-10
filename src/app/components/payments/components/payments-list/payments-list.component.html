@@ -23,6 +23,7 @@
         <td>{{ payment.charges ? payment.charges.payment_method_details.card.brand : payment.paymentMethod}}<span *ngIf="type === 'stripe'">....{{payment.charges.payment_method_details.card.last4}}</span></td>
         <td>{{ payment.charges ? payment.charges.billing_details.name : payment.name }}</td>
         <td *ngIf="payment.charges"><a [href]="payment.charges.receipt_url" target="_blank">Receipt</a></td>
+        <td *ngIf="!payment.charges"><p class="mb-0 text-primary" (click)="downloadReceipt(payment._id)">Receipt</p></td>
       </tr>
     </tbody>
   </table>

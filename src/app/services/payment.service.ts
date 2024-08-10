@@ -26,6 +26,30 @@ export class PaymentService {
     return this.http.post<any>(url, token);
   }
 
+  public downloadPaymentReceipt(paymentId: string): Observable<any> {
+    const url = 'https://cit-be.onrender.com/api/payment/' + paymentId + '/download-receipt';
+    return this.http.post<any>(url, {currency: '$'});
+  }
+
+  public downloadReport(response: any, type: string): void {
+    const a = document.createElement('a');
+    document.body.appendChild(a);
+    const decodedContent = window.atob(response.result);
+    const byteArray = new Uint8Array(decodedContent.length);
+    for (let i = 0; i < decodedContent.length; i++) {
+      byteArray[i] = decodedContent.charCodeAt(i);
+    }
+    // tslint:disable-next-line:one-variable-per-declaration
+    const blob = new Blob([byteArray.buffer],
+      {type: 'pdf'}),
+      url = window.URL.createObjectURL(blob);
+    a.href = url;
+    a.target = '_blank';
+    a.download = response.fileName + '.' +  type;
+    a.click();
+    a.remove();
+  }
+
   public initiateRazorpayPayment(orderId: string, amount: number) {
     const options: any = {
       key: 'rzp_live_AmpQY2tGNDYHJJ', // Enter the Key ID generated from the Dashboard
